@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Kopi Nusantara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #F5EFE0;
+      --brown:   #3B1F0A;
+      --gold:    #C8923A;
+      --warm:    #7A4820;
+      --light:   #FAF6EE;
+      --muted:   #9A7B5B;
+      --ink:     #2A1505;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 5%;
+      background: rgba(250,246,238,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(200,146,58,0.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--warm); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); border-bottom: 1.5px solid var(--gold); padding-bottom: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 70vh; min-height: 420px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(30,10,2,0.82) 30%, rgba(30,10,2,0.2) 100%),
+        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 8% 5%;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.1;
+      color: #fff;
+      max-width: 640px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── STORY SECTION ── */
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+    .story-img {
+      position: relative; overflow: hidden;
+    }
+    .story-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 8s ease;
+    }
+    .story-img:hover img { transform: scale(1.04); }
+    .story-img-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      background: var(--gold); color: #fff;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+    }
+    .story-text {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 5rem 6%;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .story-text .eyebrow {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+    .story-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.25;
+      margin-bottom: 1.4rem;
+    }
+    .story-text p {
+      font-size: 0.95rem; line-height: 1.8;
+      color: rgba(245,239,224,0.78);
+      margin-bottom: 1rem;
+    }
+    .story-text p:last-child { margin-bottom: 0; }
+    .story-divider {
+      width: 48px; height: 2px;
+      background: var(--gold);
+      margin: 1.6rem 0;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline-section {
+      padding: 6rem 8%;
+      background: var(--cream);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header .eyebrow {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--brown);
+    }
+    .timeline {
+      max-width: 720px; margin: 0 auto;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 28px; top: 0; bottom: 0;
+      width: 1px; background: rgba(200,146,58,0.3);
+    }
+    .tl-item {
+      display: flex; gap: 2rem;
+      margin-bottom: 3rem;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .tl-item.visible { opacity: 1; transform: none; }
+    .tl-dot {
+      flex-shrink: 0;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--brown);
+      border: 3px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      z-index: 1;
+    }
+    .tl-body { padding-top: 0.8rem; }
+    .tl-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+    }
+    .tl-body p {
+      font-size: 0.88rem; line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── VISI MISI ── */
+    .vismis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .vm-card {
+      padding: 5rem 6%;
+      position: relative; overflow: hidden;
+    }
+    .vm-card.visi { background: var(--gold); }
+    .vm-card.misi { background: var(--brown); }
+    .vm-card .big-letter {
+      position: absolute; top: -1rem; right: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem; font-weight: 700;
+      opacity: 0.06; color: #fff;
+      line-height: 1; pointer-events: none; user-select: none;
+    }
+    .vm-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .vm-card p, .vm-card li {
+      font-size: 0.92rem; line-height: 1.8;
+      color: rgba(255,255,255,0.85);
+    }
+    .vm-card ul { list-style: none; padding: 0; }
+    .vm-card ul li { padding: 0.35rem 0; padding-left: 1.2rem; position: relative; }
+    .vm-card ul li::before {
+      content: '–'; position: absolute; left: 0;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── KUALITAS KOPI ── */
+    .quality {
+      padding: 6rem 8%;
+      background: var(--light);
+    }
+    .quality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 3.5rem;
+    }
+    .q-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .q-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(59,31,10,0.1);
+    }
+    .q-icon {
+      font-size: 2rem; margin-bottom: 1.1rem;
+    }
+    .q-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--brown);
+      margin-bottom: 0.6rem;
+    }
+    .q-card p {
+      font-size: 0.85rem; line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── TEAM FOTO ── */
+    .team {
+      padding: 6rem 8%;
+      background: var(--cream);
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .team-card { text-align: center; }
+    .team-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      display: block;
+      filter: grayscale(30%);
+      transition: filter 0.3s;
+      margin-bottom: 1.2rem;
+    }
+    .team-card:hover .team-photo { filter: grayscale(0); }
+    .team-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--brown);
+    }
+    .team-role {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-top: 0.3rem;
+    }
+
+    /* ── FOOTER STRIP ── */
+    .footer-strip {
+      padding: 2.5rem 8%;
+      background: var(--brown);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-strip p {
+      font-size: 0.8rem; color: rgba(245,239,224,0.5);
+    }
+    .footer-strip .logo-f {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--cream);
+    }
+    .footer-strip .logo-f span { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .story { grid-template-columns: 1fr; }
+      .story-img { height: 280px; }
+      .vismis { grid-template-columns: 1fr; }
+      .quality-grid { grid-template-columns: 1fr; gap: 1px; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .footer-strip { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tl-item { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Kopi <span>Nusantara</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#" class="active">About Us</a></li>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Order</a></li>
+      <li><a href="#">Review</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Tentang Kami</p>
+      <h1 class="hero-title">Dari biji pilihan,<br><em>lahir cita rasa</em><br>yang tak terlupakan.</h1>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story">
+    <div class="story-img">
+      <img
+        src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=900&q=80"
+        alt="Barista meracik kopi dengan penuh dedikasi"
+        loading="lazy"
+      />
+      <span class="story-img-label">Sejak 2015</span>
+    </div>
+    <div class="story-text">
+      <p class="eyebrow">Kisah Kami</p>
+      <h2>Berawal dari<br>secangkir kopi pagi.</h2>
+      <div class="story-divider"></div>
+      <p>Kopi Nusantara lahir dari kecintaan mendalam terhadap kopi Indonesia. Pada 2015, Arif dan Dewi — dua sahabat dengan latar belakang barista — memutuskan mengubah garasi kecil di Kemang menjadi ruang berbagi cerita sambil menikmati kopi berkualitas terbaik.</p>
+      <p>Kami percaya bahwa secangkir kopi bukan sekadar minuman. Ia adalah waktu jeda, percakapan yang hangat, dan penghargaan terhadap para petani di balik setiap biji yang kami gunakan.</p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <div class="section-header">
+      <p class="eyebrow">Perjalanan Kami</p>
+      <h2>Satu dekade, satu cangkir sekaligus.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">2015</div>
+        <div class="tl-body">
+          <h3>Garasi Kemang</h3>
+          <p>Dua barista, satu mesin espresso bekas, dan mimpi yang terlalu besar untuk dipendam. Kopi Nusantara pertama kali menyeduh kopi untuk umum di ruang garasi 24 m².</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2017</div>
+        <div class="tl-body">
+          <h3>Toko Pertama di Kemang</h3>
+          <p>Sambutan luar biasa mendorong kami membuka toko permanen. Kami menghadirkan desain industrial-warm yang kini menjadi ciri khas Kopi Nusantara.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2019</div>
+        <div class="tl-body">
+          <h3>Direct Trade dengan Petani</h3>
+          <p>Kami menjalin kemitraan langsung dengan petani kopi di Toraja, Aceh Gayo, dan Flores — memastikan setiap biji terpilih dan petani mendapat harga yang adil.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2022</div>
+        <div class="tl-body">
+          <h3>Ekspansi ke 3 Kota</h3>
+          <p>Kini kami hadir di Jakarta, Bandung, dan Surabaya — membawa pengalaman yang sama: kopi istimewa, suasana hangat, dan orang-orang yang peduli.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISI MISI -->
+  <section class="vismis">
+    <div class="vm-card visi">
+      <div class="big-letter">V</div>
+      <h3>Visi Kami</h3>
+      <p>Menjadi coffee shop lokal terpercaya yang menghubungkan jiwa-jiwa melalui kopi Nusantara berkualitas dunia — dari ladang petani Indonesia hingga cangkir Anda.</p>
+    </div>
+    <div class="vm-card misi">
+      <div class="big-letter">M</div>
+      <h3>Misi Kami</h3>
+      <ul>
+        <li>Menghadirkan kopi single-origin terbaik Indonesia dengan standar specialty grade.</li>
+        <li>Memberdayakan petani lokal melalui kemitraan langsung yang adil dan transparan.</li>
+        <li>Menciptakan ruang yang nyaman untuk bekerja, bersantai, dan bercerita.</li>
+        <li>Mendidik pelanggan tentang keindahan dan keragaman kopi Nusantara.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- KUALITAS -->
+  <section class="quality">
+    <div class="section-header">
+      <p class="eyebrow">Kualitas Kopi</p>
+      <h2>Standar kami dimulai<br>dari sumber pertama.</h2>
+    </div>
+    <div class="quality-grid">
+      <div class="q-card">
+        <div class="q-icon">🌱</div>
+        <h4>Single-Origin Pilihan</h4>
+        <p>Setiap biji kopi kami bersumber dari satu perkebunan spesifik — Toraja Sapan, Aceh Gayo Washed, Flores Bajawa — dengan ketelusuran penuh hingga nama petaninya.</p>
+      </div>
+      <div class="q-card">
+        <div class="q-icon">🔥</div>
+        <h4>Roasting Sendiri</h4>
+        <p>Kami memiliki dapur roasting di Jakarta Selatan. Setiap batch kecil dipanggang dengan presisi untuk memunculkan karakter terbaik dari setiap origin.</p>
+      </div>
+      <div class="q-card">
+        <div class="q-icon">⚗️</div>
+        <h4>Barista Tersertifikasi</h4>
+        <p>Tim barista kami bersertifikat SCAI dan rutin mengikuti pelatihan. Setiap cangkir dibuat dengan protokol ekstraksi yang konsisten dan teliti.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="section-header">
+      <p class="eyebrow">Tim Kami</p>
+      <h2>Orang-orang di balik<br>setiap cangkir.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <img
+          class="team-photo"
+          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80"
+          alt="Arif Santoso, Co-Founder & Head Roaster"
+          loading="lazy"
+        />
+        <div class="team-name">Arif Santoso</div>
+        <div class="team-role">Co-Founder & Head Roaster</div>
+      </div>
+      <div class="team-card">
+        <img
+          class="team-photo"
+          src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&q=80"
+          alt="Dewi Rahayu, Co-Founder & Creative Director"
+          loading="lazy"
+        />
+        <div class="team-name">Dewi Rahayu</div>
+        <div class="team-role">Co-Founder & Creative Director</div>
+      </div>
+      <div class="team-card">
+        <img
+          class="team-photo"
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+          alt="Budi Pratama, Head Barista"
+          loading="lazy"
+        />
+        <div class="team-name">Budi Pratama</div>
+        <div class="team-role">Head Barista</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER STRIP -->
+  <footer class="footer-strip">
+    <div class="logo-f">Kopi <span>Nusantara</span></div>
+    <p>© 2025 Kopi Nusantara. Dibuat dengan ☕ di Jakarta.</p>
+  </footer>
+
+  <script>
+    // Timeline scroll animation
+    const items = document.querySelectorAll('.tl-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 120);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
